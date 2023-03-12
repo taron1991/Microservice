@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.exception.PersonNotFoundException;
+
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 
@@ -38,28 +38,18 @@ public class Service {
             User user = iterator.next();
             if (user.getName().equals(name)) {
                 iterator.remove();
-                break;
-            }
-            if (!iterator.hasNext()) {
-                throw new PersonNotFoundException("person not found " + name);
             }
         }
 
     }
 
     public void update(int id, User user) {
-
-        int count = 0;
         for (User user1 : users) {
-            count++;
             if (user1.getId().equals(id)) {
                 user1.setAge(user.getAge());
                 user1.setName(user.getName());
                 user1.setHeight(user.getHeight());
                 break;
-            }
-            if (count == users.size()) {
-                throw new PersonNotFoundException("person not found with such an id" + id);
             }
         }
 
